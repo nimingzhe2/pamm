@@ -10,36 +10,6 @@ from email.header import Header
 header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36','referer': 'https://www.mzitu.com/japan/'}   #模拟浏览器操作
 
 
-def emailtx(text):
-    # 邮件的内容
-    mail_msg = """
-         <h2 style="color:#f00"> 自动发送的邮件</h2>
-         <p><a href="https://user.qzone.qq.com/2681808375">这是一个超链接</a>
-         <p><<""" + text  +""" >>已经下载完成了，请注意查看哦</p>
-
-                  """
-    message = MIMEText(mail_msg, 'html', 'utf-8')
-
-    # 发件人名字，可以自由填写
-    message['From'] = Header('你的邮箱小助手吖', 'utf-8')
-    # 收件人名字 ，可以自由填写
-    message['To'] = Header('坏狗i', 'utf-8')
-
-    # 邮件标题
-    subject = '这是233自动发送的邮件哦！！'
-    message['Subject'] = Header(subject, 'utf-8')
-
-    # 发送方地址
-    sender = '770045655@qq.com'
-    # 接收方地址，可以是多个地址
-    receivers = ['2681808375@qq.com']
-
-    # 使用qq邮箱的服务，发送邮件
-    smtpObj = smtplib.SMTP_SSL("smtp.qq.com", 465)
-    smtpObj.login(sender, 'sbptiwwgluqkbedf')  # 登录 地址 授权码
-    smtpObj.sendmail(sender, receivers, message.as_string())  # 发送
-    smtpObj.quit()  # 关闭
-    print('邮件发送成功')
 
 def save_file(rod, url):  # 保存文件函数
     try:
@@ -81,7 +51,6 @@ def filluniuclist(html):   #取出组
                                 print(tgs.get('href'))
                                 urls = tgs.get('href')             #从span的a标签中href属性的值传递给urls
                                 print(text)                        #打印显示要下载的名字
-                                emailtx(text)
                                 path = 'd://图片//' + text         #名字加到路径后
                                 url = tds.get('data—original')     #将图片的地址(data_original属性中)传递给url
                                 print(url)                         #打印图片的地址
